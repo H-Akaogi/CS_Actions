@@ -13,8 +13,7 @@ public class CalcService
     /// <returns>計算結果</returns>
     /// <exception cref="DivideByZeroException">0で割ろうとした場合</exception>
     /// <exception cref="InvalidOperationException">不正な演算子が指定された場合</exception>
-    public int Execute(int value, int value2, string operatorType
-    )
+    public int Execute(int value, int value2, string operatorType)
     {
         return operatorType switch
         {
