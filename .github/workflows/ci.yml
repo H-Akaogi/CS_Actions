@@ -1,21 +1,26 @@
+# ワークフロー名
 name: .NET CS_WebApp CI
 
+# いつ実行するか
 on: 
-  push:
-    branches:
+  push: # pushされたときに実行する
+    branches: # mainブランチにpushされたときだけ実行する
       - main
 
+# 実行する処理のまとまり
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: リポジトリのチェックアウト
-        uses: actions/checkout@v4
+  build-and-test: # jobの名前(自分で設定)
+    runs-on: ubuntu-latest # jobを事項する環境
 
-      - name: .NET SDKのセットアップ
-        uses: actions/setup-dotnet@v4
+    # ジョブ内で順番に実行される手順（ステップ）のリスト
+    steps:
+      - name: リポジトリのチェックアウト # GitHub上のソースコードを、GitHub Actions Runner(GitHub Actions の処理を実際に実行するコンピューター)の中に持ってくる
+        uses: actions/checkout@v4 # GitHub公式の actions/checkout という Action
+
+      - name: .NET SDKのセットアップ # .NETコマンドを使えるようにする
+        uses: actions/setup-dotnet@v4 # GitHub公式の actions/setup-dotnet という Action
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.0.x' # .NET SDK 8.0 系の最新版を使う
 
       # ----- ここから追記 -----
       - name: コードフォーマットの検証 (Lint)
